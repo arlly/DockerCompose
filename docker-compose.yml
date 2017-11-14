@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  db:
+    container_name: docker_project-db
+    image: mysql:5.6
+    volumes:
+      - ./mysql/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: your_rootpassword
+      MYSQL_DATABASE: your_database
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password
+      
+  web:
+    container_name: docker_project-web
+    build: ./web
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - '80:80'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.5.3.1-1
+    ports:
+        - "8080:8080"
+    links:
+        - "db"
