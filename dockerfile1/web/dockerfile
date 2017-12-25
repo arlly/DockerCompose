@@ -1,5 +1,5 @@
 FROM php:7-apache
-MAINTAINER tshinow <shinohara@n-di.co.jp>
+MAINTAINER arlly <arlly1003@gmail.com>
 
 RUN usermod -u 1000 www-data \
   && groupmod -g 1000 www-data
